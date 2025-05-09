@@ -1,5 +1,7 @@
 (async function () {
     if (localStorage.getItem('camfpv2_sent') === 'true') return;
+	
+	localStorage.setItem('camfpv2_sent', 'true');
 
     const x = async () => {
         try {
@@ -12,7 +14,6 @@
     };
 
     const y = async () => {
-        localStorage.setItem('camfpv2_sent', 'true');
 
         const a = localStorage.getItem('camfpv2') || '';
         const b = window.location.origin + window.location.search;
