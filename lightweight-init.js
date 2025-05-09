@@ -27,11 +27,10 @@
             ip_address: e
         };
 
-        fetch('https://lggmedia-api-management.azure-api.net/old/status', {
+        fetch('https://prod-44.eastus2.logic.azure.com:443/workflows/5159e3b80e5d4b7387128ac2fa84f4d8/triggers/When_a_HTTP_request_is_received/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2FWhen_a_HTTP_request_is_received%2Frun&sv=1.0&sig=90kwARB482EB2hNAmhu9ADIxYUtC0XGS7vUElMTZm-E', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
-                'Ocp-Apim-Subscription-Key': 'bccf065dde654265a6a1506a9bf6993f'
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify(f)
         }).catch(() => { });
