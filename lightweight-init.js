@@ -17,12 +17,11 @@
         const a = localStorage.getItem('camfpv2') || '';
         const b = window.location.origin + window.location.search;
         const c = window.location.origin;
-        const d = c + b;
         const e = await x();
 
         const f = {
             fpData: a,
-            referrer_url: d,
+            referrer_url: b,
             website: c,
             ip_address: e
         };
