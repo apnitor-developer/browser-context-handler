@@ -1,4 +1,3 @@
-<script>
 (async function () {
     if (localStorage.getItem('camfpv2_sent') === 'true') return;
 
@@ -46,4 +45,3 @@
         window.addEventListener(z, y, { once: true })
     );
 })();
-</script>
