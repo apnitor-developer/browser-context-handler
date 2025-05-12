@@ -19,12 +19,14 @@
         const b = window.location.origin + window.location.search;
         const c = window.location.origin;
         const e = await x();
+		const g = localStorage.getItem('cmbold') || '';
 
         const f = {
             fpData: a,
             referrer_url: b,
             website: c,
-            ip_address: e
+            ip_address: e,
+			cmbold: g
         };
 
         fetch('https://prod-44.eastus2.logic.azure.com:443/workflows/5159e3b80e5d4b7387128ac2fa84f4d8/triggers/When_a_HTTP_request_is_received/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2FWhen_a_HTTP_request_is_received%2Frun&sv=1.0&sig=90kwARB482EB2hNAmhu9ADIxYUtC0XGS7vUElMTZm-E', {
