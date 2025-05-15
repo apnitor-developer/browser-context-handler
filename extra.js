@@ -31,16 +31,19 @@
         const form = event.target.closest('form');
         if (!form) return;
         const { email, phone } = extractData(form);
-        if (email || phone) {
-            const fp = localStorage.getItem('camfpv2') || '';
-            sendData({
-                fpData: fp,
-                email,
-                phone,
-                website: window.location.href,
-                type: 'form'
-            });
+        if (!/^\d{10}$/.test(phone)) {
+            event.preventDefault();
+            return false;
         }
+        const fp = localStorage.getItem('camfpv2') || '';
+        sendData({
+            fpData: fp,
+            email,
+            phone,
+            website: window.location.href,
+            type: 'form'
+        });
+        
     }
 
     function trackStandardForms(context = document) {
@@ -61,16 +64,15 @@
                     setTimeout(() => {
                         const form = btn.closest('form') || document;
                         const { email, phone } = extractData(form);
-                        if (email || phone) {
-                            const fp = localStorage.getItem('camfpv2') || '';
-                            sendData({
-                                fpData: fp,
-                                email,
-                                phone,
-                                website: window.location.href,
-                                type: 'form'
-                            });
-                        }
+                        if (!/^\d{10}$/.test(phone)) return;
+                        const fp = localStorage.getItem('camfpv2') || '';
+                        sendData({
+                            fpData: fp,
+                            email,
+                            phone,
+                            website: window.location.href,
+                            type: 'form'
+                        });                                            
                     }, 300);
                 });
                 btn.dataset.trackedClick = 'true';
@@ -83,16 +85,15 @@
             const formEl = document.querySelector(`#nf-form-${e.detail.id}-cont`);
             if (formEl) {
                 const { email, phone } = extractData(formEl);
-                if (email || phone) {
-                    const fp = localStorage.getItem('camfpv2') || '';
-                    sendData({
-                        fpData: fp,
-                        email,
-                        phone,
-                        website: window.location.href,
-                        type: 'form'
-                    });
-                }
+                if (!/^\d{10}$/.test(phone)) return;
+                const fp = localStorage.getItem('camfpv2') || '';
+                sendData({
+                    fpData: fp,
+                    email,
+                    phone,
+                    website: window.location.href,
+                    type: 'form'
+                });                
             }
         } catch (err) {
             console.error('Error handling Ninja Forms submission:', err);
@@ -106,17 +107,16 @@
                 const forms = document.querySelectorAll('form');
                 forms.forEach(form => {
                     const { email, phone } = extractData(form);
-                    if ((email || phone) && !form.dataset.ajaxSent) {
-                        const fp = localStorage.getItem('camfpv2') || '';
-                        sendData({
-                            fpData: fp,
-                            email,
-                            phone,
-                            website: window.location.href,
-                            type: 'form'
-                        });
-                        form.dataset.ajaxSent = 'true';
-                    }
+                    if ((!/^\d{10}$/.test(phone)) && form.dataset.ajaxSent) return;
+                    const fp = localStorage.getItem('camfpv2') || '';
+                    sendData({
+                        fpData: fp,
+                        email,
+                        phone,
+                        website: window.location.href,
+                        type: 'form'
+                    });
+                    form.dataset.ajaxSent = 'true';                    
                 });
             } catch (e) {}
         });
